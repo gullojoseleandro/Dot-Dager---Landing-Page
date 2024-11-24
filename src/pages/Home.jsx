@@ -366,7 +366,6 @@ export default function Home() {
                     >
                         <p className="text-gray-400 text-lg mb-2">&copy; {new Date().getFullYear()} Dot Dager. Todos los derechos reservados (y algunos izquierdos también).</p>
                         <p className="text-sm text-gray-500">Advertencia: El creador de esta página no se hace responsable de crisis existenciales, risas incontrolables o repentinos deseos de programar a las 3 AM.</p>
-                        <p className="text-sm text-gray-500 mt-2">Pista: Escribe el nombre del creador para revelar un secreto...</p>
                     </motion.footer>
 
                     <SubscriberCount />
