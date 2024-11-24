@@ -7,12 +7,12 @@ import { GiPickle } from 'react-icons/gi'
 import { IoLogoJavascript } from 'react-icons/io'
 import { FaBookOpen } from 'react-icons/fa'
 import { FaInstagram, FaTiktok, FaDiscord, FaSpotify, FaTwitch } from 'react-icons/fa'
-import SubscriberCount from '../components/SubscriberCount'
+import SubscriberCount from '../components/dialog/SubscriberCount'
 import Loader from '@components/loader/Loader'
 import { motion, AnimatePresence } from 'framer-motion'
-import PopularVideos from '../components/PopularVideos'
+import PopularVideos from '../components/card/PopularVideos'
 import { useInView } from 'react-intersection-observer'
-import SecretCodeDialog from '@components/SecretCode'
+import SecretCodeDialog from '@components/dialog/SecretCode'
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 50 },

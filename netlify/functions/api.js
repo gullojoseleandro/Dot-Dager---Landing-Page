@@ -1,30 +1,21 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
+import express, { Router } from 'express';
+import serverless from 'serverless-http';
 import { google } from 'googleapis';
 
-dotenv.config();
 
-const apiKey = process.env.VITE_YOUTUBE_API_KEY;
+const api = express();
+
+const router = Router();
+
+const apiKey = "AIzaSyD6XgGmJ9FBYVl-2q0w9YNQFrRKd4amYyw";
 const youtube = google.youtube({
   version: 'v3',
   auth: apiKey,
 });
 
-const app = express();
-const PORT = 3001;
-
-app.use(cors()); // Habilitar CORS para que el frontend pueda acceder
-
-app.get('/', (req, res) => {
-  res.send('Bienvenido a mi servidor!');
-});
-
-// Ruta para obtener estadísticas del canal
-app.get('/api/youtube-data/:username', async (req, res) => {
+router.get('/youtube/', async (req, res) => {
     try {
-      const username = req.params.username;
-      console.log(username)
+      const username = "DotDager";
   
       // Buscar el canal por nombre de usuario
       const searchResponse = await youtube.search.list({
@@ -32,8 +23,6 @@ app.get('/api/youtube-data/:username', async (req, res) => {
         q: username,
         type: 'channel'
       });
-
-      console.log(searchResponse)
   
       if (searchResponse.data.items && searchResponse.data.items.length > 0) {
         const channelId = searchResponse.data.items[0].id.channelId;
@@ -60,7 +49,6 @@ app.get('/api/youtube-data/:username', async (req, res) => {
     }
   });
 
-// Iniciar el servidor
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-  });
+api.use("/api/", router);
+
+export const handler = serverless(api);

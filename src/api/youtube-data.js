@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-const url = './../api/index.ts'; // Vercel usa rutas relativas para funciones serverless
+// const testing_url = 'http://localhost:8888/api/youtube';
+const url = 'https://dotdagerbyjlg.netlify.app/api/youtube';
 
-export async function getChannelData(username) {
+export async function getChannelData() {
   try {
-    const response = await axios.get(`${url}?username=${username}`);
+    const response = await axios.get(`${url}`);
 
     if (response.status !== 200) {
       throw new Error('Error fetching channel data');
